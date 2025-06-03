@@ -17,6 +17,7 @@ package io.github.torand.javacommons.lang;
 
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
+import static java.util.Objects.requireNonNull;
 
 /**
  * Provides general purpose string utilities.
@@ -49,6 +50,7 @@ public final class StringHelper {
      * @return the generated string.
      */
     public static String generate(String string, int count) {
+        requireNonNull(string, "string is null");
         return string.repeat(count);
     }
 
@@ -60,6 +62,9 @@ public final class StringHelper {
      * @return the generated string.
      */
     public static String generate(String string, int count, String delimiter) {
+        requireNonNull(string, "string is null");
+        requireNonNull(delimiter, "delimiter is null");
+
         StringBuilder b = new StringBuilder();
         for (int t = 0; t < count; t++) {
             if (t != 0) {
@@ -67,6 +72,7 @@ public final class StringHelper {
             }
             b.append(string);
         }
+
         return b.toString();
     }
 
@@ -76,6 +82,10 @@ public final class StringHelper {
      * @return the quoted string.
      */
     public static String quote(String string) {
+        if (isNull(string)) {
+            return null;
+        }
+
         return "\"" + string + "\"";
     }
 
@@ -101,6 +111,7 @@ public final class StringHelper {
         if (isBlank(string)) {
             return string;
         }
+
         return string.substring(0,1).toUpperCase() + string.substring(1);
     }
 
@@ -113,6 +124,7 @@ public final class StringHelper {
         if (isBlank(string)) {
             return string;
         }
+
         return string.substring(0,1).toLowerCase() + string.substring(1);
     }
 }
