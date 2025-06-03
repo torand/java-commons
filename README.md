@@ -46,7 +46,7 @@ Include in a ```build.gradle``` file like this:
 
 ```groovy
 dependencies {
-    implementation 'io.github.torand:java-commons:1.0.1'
+    implementation 'io.github.torand:java-commons:1.0.0'
 }
 ```
 
