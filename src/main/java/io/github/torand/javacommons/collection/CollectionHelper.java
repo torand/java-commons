@@ -149,6 +149,17 @@ public final class CollectionHelper {
     }
 
     /**
+     * Creates a concatenated stream from the elements in the specified iterables.
+     * @param first the first iterable.
+     * @param second the second iterable.
+     * @return the stream.
+     * @param <T> the element type.
+     */
+    public static <T> Stream<T> concatStream(Iterable<T> first, Iterable<T> second) {
+        return Stream.concat(streamSafely(first), streamSafely(second));
+    }
+
+    /**
      * Concatenates the specified iterables into a single list.
      * @param first the first iterable.
      * @param second the second iterable.
@@ -156,7 +167,7 @@ public final class CollectionHelper {
      * @param <T> the element type.
      */
     public static <T> List<T> concat(Iterable<T> first, Iterable<T> second) {
-        return Stream.concat(streamSafely(first), streamSafely(second)).toList();
+        return concatStream(first, second).toList();
     }
 
     /**

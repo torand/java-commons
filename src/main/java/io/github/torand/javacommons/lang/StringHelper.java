@@ -15,6 +15,9 @@
  */
 package io.github.torand.javacommons.lang;
 
+import java.util.List;
+
+import static io.github.torand.javacommons.collection.CollectionHelper.streamSafely;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 import static java.util.Objects.requireNonNull;
@@ -100,6 +103,43 @@ public final class StringHelper {
         }
 
         return object;
+    }
+
+    /**
+     * Returns specified list with all strings quoted.
+     * @param strings the list.
+     * @return the list of quoted strings.
+     */
+    public static List<String> quoteAll(List<String> strings) {
+        return streamSafely(strings).map(StringHelper::quote).toList();
+    }
+
+    /**
+     * Removes a specific number of leading characters from a string.
+     * @param string the string.
+     * @param count the number of characters to remove.
+     * @return the stripped string.
+     */
+    public static String stripHead(String string, int count) {
+        if (isBlank(string)) {
+            return string;
+        }
+
+        return string.substring(count);
+    }
+
+    /**
+     * Removes a specific number of trailing characters from a string.
+     * @param string the string.
+     * @param count the number of characters to remove.
+     * @return the stripped string.
+     */
+    public static String stripTail(String string, int count) {
+        if (isBlank(string)) {
+            return string;
+        }
+
+        return string.substring(0, Math.max(0, string.length()-count));
     }
 
     /**
