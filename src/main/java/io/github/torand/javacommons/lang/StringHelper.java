@@ -17,7 +17,7 @@ package io.github.torand.javacommons.lang;
 
 import java.util.List;
 
-import static io.github.torand.javacommons.collection.CollectionHelper.streamSafely;
+import static io.github.torand.javacommons.stream.StreamHelper.streamSafely;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 import static java.util.Objects.requireNonNull;

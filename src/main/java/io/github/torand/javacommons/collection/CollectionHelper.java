@@ -16,15 +16,15 @@
 package io.github.torand.javacommons.collection;
 
 import java.util.Collection;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
-import java.util.stream.StreamSupport;
 
 import static io.github.torand.javacommons.contract.Requires.requireNonEmpty;
 import static io.github.torand.javacommons.lang.Exceptions.illegalArgumentException;
+import static io.github.torand.javacommons.stream.StreamHelper.concatAndStream;
+import static io.github.torand.javacommons.stream.StreamHelper.streamSafely;
 import static java.util.Objects.isNull;
 import static java.util.Objects.nonNull;
 import static java.util.Objects.requireNonNull;
@@ -106,60 +106,6 @@ public final class CollectionHelper {
     }
 
     /**
-     * Creates a stream from the elements in the specified iterable. If the iterable is null or contains no elements, an empty stream is returned.
-     * @param iterable the iterable.
-     * @return the stream.
-     * @param <T> the element type.
-     */
-    public static <T> Stream<T> streamSafely(Iterable<T> iterable) {
-        if (isNull(iterable)) {
-            return Stream.empty();
-        } else {
-            return StreamSupport.stream(iterable.spliterator(), false);
-        }
-    }
-
-    /**
-     * Creates a stream from the elements in the specified iterator. If the iterator is null or contains no elements, an empty stream is returned.
-     * @param iterator the iterator.
-     * @return the stream.
-     * @param <T> the element type.
-     */
-    public static <T> Stream<T> streamSafely(Iterator<T> iterator) {
-        if (isNull(iterator)) {
-            return Stream.empty();
-        } else {
-            return streamSafely(() -> iterator);
-        }
-    }
-
-    /**
-     * Creates a stream from the elements in the specified array. If the array is null or contains no elements, an empty stream is returned.
-     * @param items the items.
-     * @return the stream.
-     * @param <T> the item type.
-     */
-    @SafeVarargs
-    public static <T> Stream<T> streamSafely(T... items) {
-        if (isNull(items)) {
-            return Stream.empty();
-        } else {
-            return Stream.of(items);
-        }
-    }
-
-    /**
-     * Creates a concatenated stream from the elements in the specified iterables.
-     * @param first the first iterable.
-     * @param second the second iterable.
-     * @return the stream.
-     * @param <T> the element type.
-     */
-    public static <T> Stream<T> concatStream(Iterable<T> first, Iterable<T> second) {
-        return Stream.concat(streamSafely(first), streamSafely(second));
-    }
-
-    /**
      * Concatenates the specified iterables into a single list.
      * @param first the first iterable.
      * @param second the second iterable.
@@ -167,7 +113,7 @@ public final class CollectionHelper {
      * @param <T> the element type.
      */
     public static <T> List<T> concat(Iterable<T> first, Iterable<T> second) {
-        return concatStream(first, second).toList();
+        return concatAndStream(first, second).toList();
     }
 
     /**

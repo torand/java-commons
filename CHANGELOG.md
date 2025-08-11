@@ -23,11 +23,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - ...
 
+## [1.2.0] - 2025-08-11
+
+### Added
+- Stream helpers: concatStreams()
+
+### Changed
+- concatStream() renamed to concatAndStream()
+
 ## [1.1.0] - 2025-06-06
 
 ### Added
-- String helpers: stripHead, stripTail, quoteAll
-- Collection helpers: concatStream
+- String helpers: stripHead(), stripTail(), quoteAll()
+- Collection helpers: concatStream()
 
 ## [1.0.0] - 2025-06-03
 
