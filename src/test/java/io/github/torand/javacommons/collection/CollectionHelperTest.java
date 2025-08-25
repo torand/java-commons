@@ -21,6 +21,7 @@ import java.util.List;
 
 import static io.github.torand.javacommons.collection.CollectionHelper.containsOneOf;
 import static io.github.torand.javacommons.collection.CollectionHelper.headOf;
+import static io.github.torand.javacommons.collection.CollectionHelper.reverse;
 import static io.github.torand.javacommons.collection.CollectionHelper.tailOf;
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -43,5 +44,11 @@ class CollectionHelperTest {
         List<Integer> iterable = List.of(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
         assertThat(containsOneOf(iterable, 11, 5, 12)).isTrue();
         assertThat(containsOneOf(iterable, 13)).isFalse();
+    }
+
+    @Test
+    void reverse_shouldReturnElementsInReversedOrder() {
+        List<Integer> list = List.of(1, 2, 3);
+        assertThat(reverse(list)).containsExactly(3, 2, 1);
     }
 }
