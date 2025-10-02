@@ -15,7 +15,9 @@
  */
 package io.github.torand.javacommons.collection;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
@@ -172,5 +174,17 @@ public final class CollectionHelper {
     public static <T> boolean containsOneOf(Iterable<T> iterable, T... items) {
         requireNonEmpty(items, "No items specified");
         return containsAny(iterable, currentValue -> Stream.of(items).anyMatch(currentValue::equals));
+    }
+
+    /**
+     * Returns a new list with elements of specified collection in reversed order.
+     * @param collection the collection
+     * @return the reversed list.
+     * @param <T> the element type.
+     */
+    public static <T> List<T> reverse(Collection<T> collection) {
+        List<T> list = new ArrayList<>(collection);
+        Collections.reverse(list);
+        return list;
     }
 }

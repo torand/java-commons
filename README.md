@@ -35,7 +35,7 @@ Include in a ```pom.xml``` file like this:
   <dependency>
     <groupId>io.github.torand</groupId>
     <artifactId>java-commons</artifactId>
-    <version>1.2.0</version>
+    <version>1.3.0</version>
   </dependency>
 </dependencies>
 ```
@@ -46,7 +46,7 @@ Include in a ```build.gradle``` file like this:
 
 ```groovy
 dependencies {
-    implementation 'io.github.torand:java-commons:1.2.0'
+    implementation 'io.github.torand:java-commons:1.3.0'
 }
 ```
 

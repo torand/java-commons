@@ -15,8 +15,12 @@
  */
 package io.github.torand.javacommons.stream;
 
+import java.util.Collections;
 import java.util.Iterator;
+import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
@@ -90,5 +94,15 @@ public final class StreamHelper {
      */
     public static <T> Stream<T> concatStreams(Stream<T>... streams) {
         return Stream.of(streams).flatMap(Function.identity());
+    }
+
+    /**
+     * Returns a {@link Collector} producing a list with elements in reversed order.
+     * @return the {@link Collector} object.
+     * @param <T> the value type.
+     */
+    public static <T> Collector<T, ?, List<T>> toReversedList() {
+        return Collectors.collectingAndThen(Collectors.toList(), list -> {
+            Collections.reverse(list); return list;});
     }
 }

@@ -23,6 +23,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - ...
 
+## [1.3.0] - 2025-09-25
+
+### Added
+- Stream helpers: toReversedList()
+- Collection helpers: reverse()
+
 ## [1.2.0] - 2025-08-11
 
 ### Added
