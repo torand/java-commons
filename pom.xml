@@ -86,7 +86,7 @@
         <junit.jupiter.version>5.13.4</junit.jupiter.version>
         <assertj.version>3.27.6</assertj.version>
         <hamcrest.version>3.0</hamcrest.version>
-        <jacoco-maven-plugin.version>0.8.13</jacoco-maven-plugin.version>
+        <jacoco-maven-plugin.version>0.8.14</jacoco-maven-plugin.version>
     </properties>
 
     <dependencies>
