@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2025 Tore Eide Andersen
+ * Copyright (c) 2025-2026 Tore Eide Andersen
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -47,6 +47,16 @@ public final class StreamHelper {
     }
 
     /**
+     * Creates a stream from the elements in the specified iterable with elements indexed. If the iterable is null or contains no elements, an empty stream is returned.
+     * @param iterable the iterable.
+     * @return the stream.
+     * @param <T> the element type.
+     */
+    public static <T> Stream<IndexedValue<T>> streamSafelyWithIndex(Iterable<T> iterable) {
+        return withIndex(streamSafely(iterable));
+    }
+
+    /**
      * Creates a stream from the elements in the specified iterator. If the iterator is null or contains no elements, an empty stream is returned.
      * @param iterator the iterator.
      * @return the stream.
@@ -58,6 +68,16 @@ public final class StreamHelper {
         } else {
             return streamSafely(() -> iterator);
         }
+    }
+
+    /**
+     * Creates a stream from the elements in the specified iterator with elements indexed. If the iterator is null or contains no elements, an empty stream is returned.
+     * @param iterator the iterator.
+     * @return the stream.
+     * @param <T> the element type.
+     */
+    public static <T> Stream<IndexedValue<T>> streamSafelyWithIndex(Iterator<T> iterator) {
+        return withIndex(streamSafely(iterator));
     }
 
     /**
@@ -73,6 +93,30 @@ public final class StreamHelper {
         } else {
             return Stream.of(items);
         }
+    }
+
+    /**
+     * Creates a stream from the elements in the specified array with elements indexed. If the array is null or contains no elements, an empty stream is returned.
+     * @param items the items.
+     * @return the stream.
+     * @param <T> the item type.
+     */
+    @SafeVarargs
+    public static <T> Stream<IndexedValue<T>> streamSafelyWithIndex(T... items) {
+        return withIndex(streamSafely(items));
+    }
+
+    /**
+     * Returns specified stream with index (zero-based) aware elements.
+     * @param stream the stream to index
+     * @return the stream of indexed elements
+     * @param <T> the element type
+     */
+    public static <T> Stream<IndexedValue<T>> withIndex(Stream<T> stream) {
+        return StreamSupport.stream(
+            new IndexingSpliterator<>(stream.spliterator()),
+            stream.isParallel() // Preserve parallel characteristics
+        );
     }
 
     /**

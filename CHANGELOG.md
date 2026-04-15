@@ -9,7 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-- ...
+- Stream helpers: streamSafelyWithIndex() for Iterable, Iterator and array arguments.
  
 ### Changed
 - ...

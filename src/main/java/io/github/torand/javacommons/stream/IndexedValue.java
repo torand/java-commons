@@ -13,17 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package io.github.torand.javacommons.contract;
+package io.github.torand.javacommons.stream;
 
 /**
- * Defines a requirement to be fulfilled in a {@link Requires} statement.
+ * Wraps a value and keeps it index in a stream of values.
+ * @param value the value
+ * @param index the zero-based index
+ * @param <T> the value type
  */
-@FunctionalInterface
-public interface Requirement {
-
-    /**
-     * Tests the requirement.
-     * @return true if requirement is fulfilled; else false.
-     */
-    boolean test();
+public record IndexedValue<T>(T value, int index) {
+    @Override
+    public String toString() {
+        return "IndexedValue{value=" + value + ", index=" + index + "}";
+    }
 }
